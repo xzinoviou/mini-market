@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+  mysql:
+    image: mysql:8.0.16
+    container_name: mini-market-mysql
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: dev
+      MYSQL_DATABASE: mini_market_db
+    volumes:
+      - mini-market-mysql-data:/var/lib/mysql
+    networks:
+      - mini-market-net
+
+  mongo:
+    image: 'mongo:latest'
+    container_name: mini-market-mongo
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_DATABASE: mini_market_db
+      MONGO_INITDB_ROOT_USERNAME: dev
+      MONGO_INITDB_ROOT_PASSWORD: dev
+    networks:
+      - mini-market-net
+    volumes:
+      - mini-market-mongo-data:/data/db
+
+volumes:
+  mini-market-mysql-data:
+  mini-market-mongo-data:
+
+networks:
+  mini-market-net:
+    driver: bridge
