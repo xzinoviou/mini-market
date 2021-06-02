@@ -46,6 +46,7 @@ spring:
       authentication-database: admin
 
 #jwt
+#for testing purposes - DO NOT keep sensible data in this yaml
 jwt:
   secret: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
   type: JWT
